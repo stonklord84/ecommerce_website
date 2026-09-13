@@ -2,7 +2,7 @@ import { ShoppingBag, User, Headset, Search } from "lucide-react"
 
 export default function Header(){
     return(
-        <div className="flex items-center bg-white text-black w-full h-20 px-10 gap-5 border-y border-black">
+        <div className="flex overflow-x-auto whitespace-nowrap no-scrollbar items-center bg-white text-black w-full h-20 px-10 gap-5 border-y border-black">
             <img className="h-full w-auto mr-auto brightness-0" src="/lumiere_east_logo.png"/>
             <div className="flex flex-1 gap-15 h-full items-center px-10">
                 <a>Mulberry Silk</a>
