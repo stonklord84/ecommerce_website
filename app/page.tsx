@@ -8,7 +8,7 @@ export default function Home() {
   const[currency, changeCurrency] = useState('CAD')
   const [dropdown, toggleDropdown] = useState(false)
   return (
-    <div>
+    <div className="overflow-x-hidden w-full">
       <Navbar currency={currency} changeCurrency={changeCurrency}
       dropdown={dropdown} toggleDropdown={toggleDropdown}/>
       <Header/>
