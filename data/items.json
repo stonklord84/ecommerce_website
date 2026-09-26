@@ -1,0 +1,37 @@
+[
+    {
+        "id": "MS1",
+        "Name": "MS Item 1",
+        "price": 9.99
+    },
+    {
+        "id": "MS2",
+        "Name":"MS Item 2",
+        "price": 8.99
+    },
+    {
+        "id": "MS3",
+        "Name":"MS Item 2",
+        "price": 8.99
+    },
+    {
+        "id": "MS4",
+        "Name":"MS Item 2",
+        "price": 8.99
+    },
+    {
+        "id": "MS5",
+        "Name":"MS Item 2",
+        "price": 8.99
+    },
+    {
+        "id": "MS6",
+        "Name":"MS Item 2",
+        "price": 8.99
+    },
+    {
+        "id": "MS7",
+        "Name":"MS Item 2",
+        "price": 8.99
+    }
+]
