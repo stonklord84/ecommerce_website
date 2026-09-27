@@ -9,11 +9,15 @@ export default function Home() {
   const [currency, changeCurrency] = useState('CAD')
   const [dropdown, toggleDropdown] = useState(false)
   const [supportWindow, togglesupportWindow] = useState(false)
+  const [mobileHeader, togglemobileHeader] = useState(false)
   return (
     <div className="w-full">
       <Navbar currency={currency} changeCurrency={changeCurrency}
       dropdown={dropdown} toggleDropdown={toggleDropdown}/>
-      <Header supportWindow={supportWindow} togglesupportWindow={togglesupportWindow} />
+      <Header supportWindow={supportWindow} 
+      togglesupportWindow={togglesupportWindow}
+      mobileHeader={mobileHeader}
+      togglemobileHeader={togglemobileHeader}/>
       <Hero/>
       <Catalogue currency={currency} changeCurrency={changeCurrency}/>
     </div>
