@@ -8,8 +8,22 @@ type CatalogueProps = {
 }
 
 export default function Catalogue({currency, changeCurrency}: CatalogueProps){
+    async function frankfurter(base: string, quote: string) : Promise<number>{
+        let res = await fetch(`https://api.frankfurter.dev/v2/providers/ecb/rate/${base}/${quote}`)
+        let data = await res.json()
+        let ffRate = data.rate
+        return ffRate
+    }
+    const [baseCurrency, changeBaseCurrency] = useState(currency)
+    const [rate, setRate] = useState(1)
     useEffect(()=>{
-
+        frankfurter(baseCurrency, currency).then(
+            (r)=>{
+                console.log(r, baseCurrency, currency)
+                setRate(r)
+                //changeBaseCurrency(currency)
+            }
+        )
     }, [currency])
     return (
         <div>
@@ -24,7 +38,7 @@ export default function Catalogue({currency, changeCurrency}: CatalogueProps){
                         </div>
                         <div className='w-full h-[25%] px-2'>
                             <h1>{item.Name}</h1>
-                            <h1>{item.price}</h1>
+                            <h1 className='itemPrice'>{(item.price * rate).toFixed(2)}</h1>
                         </div>
                     </div>
                     )}
