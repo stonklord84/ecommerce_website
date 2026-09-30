@@ -1,10 +1,21 @@
+'use client'
 import items from '@/data/items.json'
-import { useEffect } from 'react'
+import { Provider, useEffect } from 'react'
 import { useState } from 'react'
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_KEY!)
 
 type CatalogueProps = {
     currency: string;
     changeCurrency: (currency: string) => void;
+}
+
+interface Product {
+    product_id: string;
+    product_name: string;
+    product_price: number
 }
 
 export default function Catalogue({currency, changeCurrency}: CatalogueProps){
@@ -16,6 +27,8 @@ export default function Catalogue({currency, changeCurrency}: CatalogueProps){
     }
     const [baseCurrency, changeBaseCurrency] = useState(currency)
     const [rate, setRate] = useState(1)
+    const [products, setProducts] = useState<Product[]>([])
+    
     useEffect(()=>{
         frankfurter(baseCurrency, currency).then(
             (r)=>{
@@ -25,20 +38,29 @@ export default function Catalogue({currency, changeCurrency}: CatalogueProps){
             }
         )
     }, [currency])
+
+    useEffect(()=>{
+        supabase.from('products').select("*").then(({error: error, data})=>{
+            console.log(data, 'does data exist')
+            setProducts(data ?? [])
+        })
+    }, [])
     return (
         <div>
             <div className="flex flex-col bg-amber-100 h-75 w-full gap-2">
                 <h1 className='text-xl px-2 mt-2 mb-1'>Our Mulberry Silk Collection {'>'}</h1>
                 <div className='w-full flex flex-1 overflow-x-auto gap-5 px-4 mt-1 mb-2'>
-                    {items.map((item)=>
-                    <div key={item.id} 
-                    className='flex-none h-full w-50 bg-white border border-white rounded-[5]'>
-                        <div className=' h-[75%] w-full'>
-                            {item.Name}
+                    {products.map(item =>
+                    <div key={item.product_id}
+                    className='flex flex-col w-50 h-full bg-white rounded-[20px] overflow-hidden'>
+                        <div className='flex justify-center w-full h-[70%] overflow-hidden py-1'>
+                            <img 
+                            src={supabase.storage.from('public-assets').getPublicUrl(`gallery/${item.product_name}.img`).data.publicUrl}
+                            />
                         </div>
-                        <div className='w-full h-[25%] px-2'>
-                            <h1>{item.Name}</h1>
-                            <h1 className='itemPrice'>{(item.price * rate).toFixed(2)}</h1>
+                        <div className='w-full h-[30%] p2-1'>
+                            <p>{item.product_name}</p>
+                            <p>{item.product_price}</p>
                         </div>
                     </div>
                     )}

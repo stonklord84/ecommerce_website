@@ -3,13 +3,9 @@ import { useEffect } from "react"
 const images = ['/100mulberrysilk.jpg', '/lumiere_east_collection.png', '/neck_nobg.png', '/woman.jpg']
 
 export default function Hero(){
-    useEffect(()=>{
-        console.log('this runs once when the page loads!')
-        setInterval(()=>{console.log('every 2 seconds')}, 2000)
-    }, [])
     return (
         <div className="flex w-full h-80">
-            <div className="flex flex-col justify-center w-[40%]">
+            <div className="hidden md:flex flex-col justify-center w-[40%]">
                 <h1 className="text-5xl pl-20 HeroText">Where East</h1>
                 <h1 className="text-5xl pl-40 HeroText">Meets West</h1>
                 <br/>

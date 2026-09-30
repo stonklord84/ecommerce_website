@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Catalogue from "@/components/Catalogue";
+import HeaderMobile from "@/components/HeaderMobile";
 
 export default function Home() {
   const [currency, changeCurrency] = useState('CAD')
@@ -18,8 +19,14 @@ export default function Home() {
       togglesupportWindow={togglesupportWindow}
       mobileHeader={mobileHeader}
       togglemobileHeader={togglemobileHeader}/>
-      <Hero/>
-      <Catalogue currency={currency} changeCurrency={changeCurrency}/>
+      <HeaderMobile
+      mobileHeader={mobileHeader}
+      togglemobileHeader={togglemobileHeader}
+      />
+      <div className={`${mobileHeader? 'hidden' : 'block'}`} id="everything-else">
+        <Hero/>
+        <Catalogue currency={currency} changeCurrency={changeCurrency}/>
+      </div>
     </div>
   );
 }
