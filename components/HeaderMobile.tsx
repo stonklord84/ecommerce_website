@@ -12,7 +12,7 @@ export default function HeaderMobile({mobileHeader, togglemobileHeader}: HeaderM
     return(
         <div className={
         `${mobileHeader? 'flex' : 'hidden'} flex flex-col bg-amber-100 w-full h-150
-        align-center space-y-5 px-10 py-5
+        align-center space-y-5 px-10 py-5 text-black
         `}>
             <input placeholder="Search The Store"
             className="w-full bg-white outline-0"/>

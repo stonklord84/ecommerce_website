@@ -47,7 +47,7 @@ export default function Catalogue({currency, changeCurrency}: CatalogueProps){
     }, [])
     return (
         <div>
-            <div className="flex flex-col bg-amber-100 h-75 w-full gap-2">
+            <div className="flex flex-col bg-amber-100 h-75 w-full gap-2 text-black">
                 <h1 className='text-xl px-2 mt-2 mb-1'>Our Mulberry Silk Collection {'>'}</h1>
                 <div className='w-full flex flex-1 overflow-x-auto gap-5 px-4 mt-1 mb-2'>
                     {products.map(item =>
