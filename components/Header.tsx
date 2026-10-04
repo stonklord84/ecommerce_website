@@ -11,10 +11,10 @@ export default function Header() {
         <nav className="flex flex-1 justify-start">
           <ul className="hidden gap-[30px] sm:flex">
             <li>
-              <a href="#collections" className={navLink}>Collections</a>
+              <Link href="/#collections" className={navLink}>Collections</Link>
             </li>
             <li>
-              <a href="#philosophy" className={navLink}>Our Story</a>
+              <Link href="/#philosophy" className={navLink}>Our Story</Link>
             </li>
           </ul>
         </nav>
@@ -22,9 +22,9 @@ export default function Header() {
         <Link href="/" className="flex flex-1 flex-col items-center gap-3.5">
           <LogoMark className="h-[60px] w-10 stroke-[1.6] text-gold" />
           <div className="text-center">
-            <h1 className="mb-1 font-serif text-[28px] font-normal uppercase leading-[1.1] tracking-[5px]">
+            <p className="mb-1 font-serif text-[28px] font-normal uppercase leading-[1.1] tracking-[5px]">
               LUMIÈRE EAST
-            </h1>
+            </p>
             <p className="font-serif text-[10px] italic uppercase tracking-[2px] text-gold">
               Where East Meets West
             </p>
@@ -32,9 +32,9 @@ export default function Header() {
         </Link>
 
         <nav className="flex flex-1 items-center justify-end gap-[30px]">
-          <a href="#journey" className={`hidden lg:inline ${navLink}`}>The Silk Journey</a>
-          <a href="#library" className={`hidden lg:inline ${navLink}`}>Silk Care</a>
-          <a href="#qa" className={`hidden lg:inline ${navLink}`}>Q&A</a>
+          <Link href="/#journey" className={`hidden lg:inline ${navLink}`}>The Silk Journey</Link>
+          <Link href="/#library" className={`hidden lg:inline ${navLink}`}>Silk Care</Link>
+          <Link href="/#qa" className={`hidden lg:inline ${navLink}`}>Q&A</Link>
           <button type="button" aria-label="Search" className="cursor-pointer">
             🔍
           </button>

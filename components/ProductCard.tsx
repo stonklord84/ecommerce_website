@@ -1,27 +1,39 @@
-import type { Product } from "@/lib/collections";
+import Link from "next/link";
+import type { Product } from "@/lib/products";
+import ProductImage from "./ProductImage";
 
-type ProductCardProps = Product & {
+type ProductCardProps = {
+  product: Product;
   description: string;
 };
 
-export default function ProductCard({ name, icon, description }: ProductCardProps) {
+export default function ProductCard({ product, description }: ProductCardProps) {
+  const href = `/products/${product.slug}`;
+
   return (
     <div className="flex flex-col justify-between border border-line bg-white p-[18px] text-center">
       <div>
-        <div className="mb-3.5 flex aspect-square w-full items-center justify-center border border-[#dfd6c9] bg-[#ede6dc]">
-          <svg viewBox="0 0 100 100" className="size-1/2 fill-none stroke-gold" aria-hidden="true">
-            <path d={icon} />
-          </svg>
-        </div>
-        <h4 className="mb-1.5 font-serif text-lg font-semibold">{name}</h4>
+        <Link href={href}>
+          <ProductImage
+            src={product.image_urls[0] ?? null}
+            alt={product.name}
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="mb-3.5"
+          />
+        </Link>
+        <h4 className="mb-1.5 font-serif text-lg font-semibold">
+          <Link href={href} className="hover:text-gold">
+            {product.name}
+          </Link>
+        </h4>
         <p className="mb-3.5 text-xs text-muted">{description}</p>
       </div>
-      <button
-        type="button"
-        className="cursor-pointer border border-ink px-3 py-2 text-[11px] uppercase tracking-[1px] transition duration-300 ease-silk hover:bg-ink hover:text-white"
+      <Link
+        href={href}
+        className="border border-ink px-3 py-2 text-[11px] uppercase tracking-[1px] transition duration-300 ease-silk hover:bg-ink hover:text-white"
       >
         Select Scarf
-      </button>
+      </Link>
     </div>
   );
 }

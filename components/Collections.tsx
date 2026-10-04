@@ -1,17 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { collections } from "@/lib/collections";
+import { formatPrice } from "@/lib/price";
+import type { CollectionWithProducts } from "@/lib/products";
 import BespokePanel from "./BespokePanel";
 import ProductCard from "./ProductCard";
 import SectionHeader from "./SectionHeader";
 
-const tabs = [...collections.map((c) => c.tab), "Atelier Bespoke"];
-const bespokeIndex = collections.length;
+type CollectionsProps = {
+  collections: CollectionWithProducts[];
+};
 
-export default function Collections() {
+export default function Collections({ collections }: CollectionsProps) {
   const [active, setActive] = useState(0);
+  const tabs = [...collections.map((c) => c.name), "Atelier Bespoke"];
   const collection = collections[active];
+  const lowestPriced = collection?.products.reduce(
+    (min, p) => (p.price_cad < min.price_cad ? p : min),
+    collection.products[0],
+  );
 
   return (
     <section id="collections" className="mx-auto max-w-[1280px] px-6 py-[70px]">
@@ -38,7 +45,7 @@ export default function Collections() {
       </div>
 
       <div role="tabpanel">
-        {active === bespokeIndex ? (
+        {!collection ? (
           <BespokePanel />
         ) : (
           <>
@@ -50,14 +57,18 @@ export default function Collections() {
                   </div>
                 ))}
               </div>
-              <div className="font-serif text-[22px] font-semibold text-gold">{collection.price}</div>
+              {lowestPriced && (
+                <div className="font-serif text-[22px] font-semibold text-gold">
+                  {formatPrice(lowestPriced)}
+                </div>
+              )}
             </div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {collection.products.map((product) => (
                 <ProductCard
-                  key={product.name}
-                  {...product}
+                  key={product.id}
+                  product={product}
                   description={collection.description}
                 />
               ))}

@@ -8,7 +8,11 @@ import Journey from "@/components/Journey";
 import Philosophy from "@/components/Philosophy";
 import SilkLibrary from "@/components/SilkLibrary";
 import { faqs } from "@/lib/faqs";
+import { getCollections } from "@/lib/products";
 import { site } from "@/lib/site";
+
+// Re-fetch products from Supabase at most once an hour.
+export const revalidate = 3600;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -45,7 +49,9 @@ const jsonLd = {
   ],
 };
 
-export default function Home() {
+export default async function Home() {
+  const collections = await getCollections();
+
   return (
     <>
       <script
@@ -59,7 +65,7 @@ export default function Home() {
       <main>
         <Hero />
         <Philosophy />
-        <Collections />
+        <Collections collections={collections} />
         <Journey />
         <SilkLibrary />
         <FAQ />

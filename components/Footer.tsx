@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/lib/site";
 import LogoMark from "./LogoMark";
 import NewsletterForm from "./NewsletterForm";
@@ -26,10 +27,10 @@ export default function Footer() {
         <div>
           <h4 className={heading}>Collections</h4>
           <ul className="space-y-3">
-            <li><a href="#collections" className={link}>Heritage Paisley Collection</a></li>
-            <li><a href="#collections" className={link}>Spring Flora Collection</a></li>
-            <li><a href="#collections" className={link}>Winter Classics Collection</a></li>
-            <li><a href="#collections" className={link}>Bespoke Gift Sets</a></li>
+            <li><Link href="/#collections" className={link}>Heritage Paisley Collection</Link></li>
+            <li><Link href="/#collections" className={link}>Spring Flora Collection</Link></li>
+            <li><Link href="/#collections" className={link}>Winter Classics Collection</Link></li>
+            <li><Link href="/#collections" className={link}>Bespoke Gift Sets</Link></li>
           </ul>
         </div>
 
@@ -43,7 +44,7 @@ export default function Footer() {
           </div>
           <div className="mb-4">Phone: {site.phoneDisplay}</div>
           <ul className="mt-4 space-y-3">
-            <li><a href="#library" className={link}>Silk Wash & Care Instructions</a></li>
+            <li><Link href="/#library" className={link}>Silk Wash & Care Instructions</Link></li>
             <li><a href="#" className={link}>Complimentary Canada & US Delivery</a></li>
           </ul>
         </div>
