@@ -10,6 +10,9 @@ create table public.collections (
   description text not null,
   -- Shown in the spec bar above the product grid, e.g. [{"label": "Hem", "value": "Hand-rolled"}]
   specs       jsonb not null default '[]',
+  -- Collapsible "Product Details" on each product page; one "Label: value" per line.
+  -- Leave empty to hide the section for this collection's products.
+  product_spec text,
   sort_order  int not null default 0
 );
 

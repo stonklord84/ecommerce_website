@@ -47,6 +47,8 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <p>{collection.description}</p>
             </div>
 
+            {collection.product_spec?.trim() && <ProductSpec spec={collection.product_spec} />}
+
             <p className="mb-6 font-serif text-[26px] font-semibold text-gold">{formatPrice(product)}</p>
 
             <button
@@ -60,5 +62,43 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       </main>
       <Footer />
     </>
+  );
+}
+
+// Renders collections.product_spec: "Label: value" lines become label/value rows,
+// lines without a colon (e.g. "Comes with a matching packing set") are shown as-is.
+function ProductSpec({ spec }: { spec: string }) {
+  const lines = spec
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  return (
+    <details className="group mb-8 border-b border-line pb-6">
+      <summary className="flex cursor-pointer list-none items-center justify-between text-[11px] font-semibold uppercase tracking-[3px] text-ink transition duration-300 ease-silk hover:text-gold [&::-webkit-details-marker]:hidden">
+        Product Details
+        <span aria-hidden="true" className="text-base font-normal text-gold transition duration-300 ease-silk group-open:rotate-45">
+          +
+        </span>
+      </summary>
+      <ul className="mt-5 space-y-3 text-sm leading-[1.7]">
+        {lines.map((line, i) => {
+          const colon = line.indexOf(":");
+          if (colon === -1) {
+            return (
+              <li key={i} className="text-muted">
+                {line}
+              </li>
+            );
+          }
+          return (
+            <li key={i} className="grid gap-1 sm:grid-cols-[160px_1fr] sm:gap-4">
+              <span className="text-[11px] uppercase tracking-[2px] text-ink">{line.slice(0, colon).trim()}</span>
+              <span className="text-muted">{line.slice(colon + 1).trim()}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </details>
   );
 }

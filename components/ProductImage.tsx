@@ -18,7 +18,8 @@ export default function ProductImage({ src, alt, sizes, priority, className = ""
       {src ? (
         <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
       ) : (
-        <LogoMark className="h-1/2 w-1/3 stroke-1 text-gold opacity-60" />
+        // multiply blends the logo's white background into the beige tile.
+        <LogoMark variant="light" className="h-1/2 opacity-60 mix-blend-multiply" />
       )}
     </div>
   );

@@ -20,7 +20,7 @@ export default function Header() {
         </nav>
 
         <Link href="/" className="flex flex-1 flex-col items-center gap-3.5">
-          <LogoMark className="h-[60px] w-10 stroke-[1.6] text-gold" />
+          <LogoMark variant="light" className="h-[60px]" />
           <div className="text-center">
             <p className="mb-1 font-serif text-[28px] font-normal uppercase leading-[1.1] tracking-[5px]">
               LUMIÈRE EAST

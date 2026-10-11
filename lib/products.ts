@@ -9,6 +9,7 @@ export type Collection = {
   name: string;
   description: string;
   specs: { label: string; value: string }[];
+  product_spec: string | null;
 };
 
 export type Product = {

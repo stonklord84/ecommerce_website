@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Montserrat } from "next/font/google";
+import ConciergeButton from "@/components/ConciergeButton";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full bg-cream font-sans leading-[1.6] text-ink">
         {children}
+        <ConciergeButton />
       </body>
     </html>
   );

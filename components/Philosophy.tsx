@@ -8,7 +8,7 @@ export default function Philosophy() {
     >
       <div className="mx-auto grid max-w-[1200px] items-center gap-10 text-center lg:grid-cols-[360px_1fr] lg:gap-[60px] lg:text-left">
         <div className="flex flex-col items-center justify-center rounded-2xl border border-[#2d4337] bg-forest-deep px-[30px] py-[50px] text-center shadow-[0_20px_40px_rgba(0,0,0,0.25)]">
-          <LogoMark leaves className="mb-5 h-[100px] w-[70px] stroke-[1.8] text-gold-light" />
+          <LogoMark variant="dark" className="mb-5 h-[100px]" />
           <h3 className="mb-1.5 font-serif text-2xl font-medium uppercase tracking-[4px] text-[#ede8de]">
             LUMIÈRE EAST
           </h3>

@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="mx-auto mb-[50px] grid max-w-[1280px] grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.5fr]">
         <div>
           <div className="mb-5 flex items-center gap-3 font-serif text-xl uppercase tracking-[4px] text-white">
-            <LogoMark lotus={false} className="h-[33px] w-[22px] stroke-2 text-gold-light" />
+            <LogoMark variant="dark" className="h-[33px]" />
             <span>LUMIÈRE EAST</span>
           </div>
           <p className="mb-3 italic text-[#e2dfd9]">Where East Meets West.</p>
