@@ -48,7 +48,7 @@ export default function ConciergeButton() {
         className="fixed bottom-5 right-5 z-[999] flex cursor-pointer items-center gap-2.5 rounded-full border border-gold-light bg-forest px-5 py-3 text-[11px] font-semibold uppercase tracking-[1px] text-gold-light shadow-[0_10px_25px_rgba(0,0,0,0.2)] transition duration-300 ease-silk hover:-translate-y-0.5 hover:bg-gold-light hover:text-forest sm:bottom-[30px] sm:right-[30px] sm:px-[26px] sm:py-3.5 sm:text-xs"
       >
         <span aria-hidden="true" className="text-base">✉</span>
-        Ask Me If Any Questions
+        Any Questions? Ask Away!
       </button>
 
       <dialog
