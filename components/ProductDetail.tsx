@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { formatPrice } from "@/lib/price";
 import type { ProductWithCollection } from "@/lib/products";
 import AnnouncementBar from "./AnnouncementBar";
+import BuyButton from "./BuyButton";
 import Footer from "./Footer";
 import Header from "./Header";
+import Price from "./Price";
 import ProductGallery from "./ProductGallery";
 
 type ProductDetailProps = {
@@ -49,14 +50,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             {collection.product_spec?.trim() && <ProductSpec spec={collection.product_spec} />}
 
-            <p className="mb-6 font-serif text-[26px] font-semibold text-gold">{formatPrice(product)}</p>
+            <p className="mb-6 font-serif text-[26px] font-semibold text-gold"><Price product={product} /></p>
 
-            <button
-              type="button"
-              className="cursor-pointer bg-ink px-6 py-4 text-xs font-semibold uppercase tracking-[2px] text-white transition duration-300 ease-silk hover:bg-gold"
-            >
-              Buy Now
-            </button>
+            <BuyButton slug={product.slug} />
           </div>
         </div>
       </main>

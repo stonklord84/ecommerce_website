@@ -19,3 +19,7 @@
   --font-serif: var(--font-cormorant), Georgia, serif;
   --font-sans: var(--font-montserrat), -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+html{
+  scroll-padding-top: 3rem;
+}

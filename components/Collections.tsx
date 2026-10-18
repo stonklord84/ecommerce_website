@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { formatPrice } from "@/lib/price";
 import type { CollectionWithProducts } from "@/lib/products";
 import BespokePanel from "./BespokePanel";
+import Price from "./Price";
 import ProductCard from "./ProductCard";
 import SectionHeader from "./SectionHeader";
 
@@ -59,7 +59,7 @@ export default function Collections({ collections }: CollectionsProps) {
               </div>
               {lowestPriced && (
                 <div className="font-serif text-[22px] font-semibold text-gold">
-                  {formatPrice(lowestPriced)}
+                  <Price product={lowestPriced} />
                 </div>
               )}
             </div>
