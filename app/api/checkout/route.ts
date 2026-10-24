@@ -46,6 +46,8 @@ export async function POST(request: Request) {
       },
     ],
     shipping_address_collection: { allowed_countries: ["CA", "US"] },
+    // Shows Stripe's "Add promotion code" field (e.g. FBGIFT).
+    allow_promotion_codes: true,
     metadata: { slug: product.slug },
     success_url: `${origin}/checkout/success`,
     cancel_url: `${origin}/products/${product.slug}`,
