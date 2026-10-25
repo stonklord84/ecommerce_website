@@ -13,13 +13,18 @@ export default function ProductCard({ product, description }: ProductCardProps) 
   return (
     <div className="flex flex-col justify-between border border-line bg-white p-[18px] text-center">
       <div>
-        <Link href={href}>
+        <Link href={href} className="relative block">
           <ProductImage
             src={product.image_urls[0] ?? null}
             alt={product.name}
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             className="mb-3.5"
           />
+          {product.status && (
+            <span className="absolute left-2.5 top-2.5 bg-ink px-2 py-1 text-[10px] uppercase tracking-[1px] text-white">
+              {product.status}
+            </span>
+          )}
         </Link>
         <h4 className="mb-1.5 font-serif text-lg font-semibold">
           <Link href={href} className="hover:text-gold">

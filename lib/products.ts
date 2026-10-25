@@ -20,11 +20,18 @@ export type Product = {
   description: string | null;
   price_cad: number;
   price_usd: number;
+  // Badge text on product cards, e.g. "Out of Stock"; no badge when empty.
+  status: string | null;
   // Full URLs of the product's photos, in display order. [0] is the main image.
   image_urls: string[];
 };
 
-export type CollectionWithProducts = Collection & { products: Product[] };
+// Products with this status can't be bought; matched case-insensitively.
+export function isOutOfStock(product: Pick<Product, "status">): boolean {
+  return product.status?.trim().toLowerCase() === "out of stock";
+}
+
+export type CollectionWithProducts =Collection & { products: Product[] };
 export type ProductWithCollection = Product & { collection: Collection };
 
 type ProductRow = Omit<Product, "image_urls"> & { image_path: string | null };

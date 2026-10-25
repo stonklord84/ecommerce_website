@@ -1,4 +1,4 @@
-import { getProduct } from "@/lib/products";
+import { getProduct, isOutOfStock } from "@/lib/products";
 import { stripe } from "@/lib/stripe";
 
 const currencies = ["cad", "usd"] as const;
@@ -21,6 +21,9 @@ export async function POST(request: Request) {
   const product = await getProduct(slug);
   if (!product) {
     return Response.json({ error: "Product not found" }, { status: 404 });
+  }
+  if (isOutOfStock(product)) {
+    return Response.json({ error: "Product is out of stock" }, { status: 409 });
   }
 
   const price = currency === "usd" ? product.price_usd : product.price_cad;

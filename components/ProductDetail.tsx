@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ProductWithCollection } from "@/lib/products";
+import { isOutOfStock, type ProductWithCollection } from "@/lib/products";
 import AnnouncementBar from "./AnnouncementBar";
 import BuyButton from "./BuyButton";
 import Footer from "./Footer";
@@ -52,7 +52,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             <p className="mb-6 font-serif text-[26px] font-semibold text-gold"><Price product={product} /></p>
 
-            <BuyButton slug={product.slug} />
+            {!isOutOfStock(product) && <BuyButton slug={product.slug} />}
           </div>
         </div>
       </main>

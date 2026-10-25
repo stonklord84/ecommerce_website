@@ -29,6 +29,8 @@ create table public.products (
   price_usd     numeric(10, 2) not null check (price_usd >= 0),
   -- Path inside the "product-images" storage bucket, e.g. "noir-gold-paisley.jpg"
   image_path    text,
+  -- Badge on the product card, e.g. "Out of Stock"; leave empty for no badge
+  status        text,
   sort_order    int not null default 0
 );
 
