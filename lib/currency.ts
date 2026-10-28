@@ -3,18 +3,31 @@
 import { useSyncExternalStore } from "react";
 
 // The shopper's chosen display/checkout currency, remembered in localStorage
-// and shared by every component that calls useCurrency().
+// and shared by every component that calls useCurrency(). Until they pick one,
+// the "currency" cookie set by proxy.ts from their country is used.
 export type Currency = "cad" | "usd";
 
 const STORAGE_KEY = "currency";
+const COOKIE_NAME = "currency";
 const listeners = new Set<() => void>();
 
+function toCurrency(value: string | null | undefined): Currency | null {
+  return value === "cad" || value === "usd" ? value : null;
+}
+
+function readCookie(): Currency | null {
+  const match = document.cookie.match(new RegExp(`(?:^|; )${COOKIE_NAME}=([^;]*)`));
+  return toCurrency(match?.[1]);
+}
+
 function read(): Currency {
+  let saved: Currency | null = null;
   try {
-    return localStorage.getItem(STORAGE_KEY) === "usd" ? "usd" : "cad";
+    saved = toCurrency(localStorage.getItem(STORAGE_KEY));
   } catch {
-    return "cad";
+    // Storage blocked: fall through to the cookie.
   }
+  return saved ?? readCookie() ?? "cad";
 }
 
 function subscribe(listener: () => void) {
