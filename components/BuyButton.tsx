@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCurrency } from "@/lib/currency";
 
 type BuyButtonProps = {
@@ -10,6 +10,16 @@ type BuyButtonProps = {
 export default function BuyButton({ slug }: BuyButtonProps) {
   const currency = useCurrency();
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+
+  // Pressing Back from Stripe can restore this page from the browser's
+  // back-forward cache, still showing "Redirecting…". Reset it when that happens.
+  useEffect(() => {
+    const reset = (e: PageTransitionEvent) => {
+      if (e.persisted) setStatus("idle");
+    };
+    window.addEventListener("pageshow", reset);
+    return () => window.removeEventListener("pageshow", reset);
+  }, []);
 
   async function handleBuy() {
     setStatus("loading");

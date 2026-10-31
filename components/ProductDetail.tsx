@@ -52,7 +52,17 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             <p className="mb-6 font-serif text-[26px] font-semibold text-gold"><Price product={product} /></p>
 
-            {!isOutOfStock(product) && <BuyButton slug={product.slug} />}
+            {!isOutOfStock(product) && (
+              <>
+                <BuyButton slug={product.slug} />
+                <p className="mt-4 text-[12px] text-muted">
+                  Free returns within 60 days of delivery.{" "}
+                  <Link href="/returns" className="border-b border-line transition duration-300 ease-silk hover:text-gold">
+                    Return policy
+                  </Link>
+                </p>
+              </>
+            )}
           </div>
         </div>
       </main>

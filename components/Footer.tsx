@@ -57,12 +57,12 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto flex max-w-[1280px] flex-col flex-wrap items-center justify-center gap-5 border-t border-[#222] pt-6 text-center sm:flex-row sm:justify-between sm:text-left">
-        <div>© 2026 LUMIÈRE EAST. All rights reserved. 100% Mulberry Silk.</div>
         <div className="flex gap-5">
           <a href="#" className={link}>Privacy Policy</a>
           <a href="#" className={link}>Terms of Service</a>
-          <a href="#" className={link}>Shipping & Returns</a>
+          <Link href="/returns" className={link}>Returns & Refunds</Link>
         </div>
+        <div>© 2026 LUMIÈRE EAST. All rights reserved. 100% Mulberry Silk.</div>
       </div>
     </footer>
   );

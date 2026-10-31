@@ -52,6 +52,10 @@ export async function POST(request: Request) {
     // Shows Stripe's "Add promotion code" field (e.g. FBGIFT).
     adaptive_pricing: {enabled: false},
     allow_promotion_codes: true,
+    // Shown under the Pay button.
+    custom_text: {
+      submit: { message: `Free returns within 60 days of delivery. Return policy: ${origin}/returns` },
+    },
     metadata: { slug: product.slug },
     success_url: `${origin}/checkout/success`,
     cancel_url: `${origin}/products/${product.slug}`,
