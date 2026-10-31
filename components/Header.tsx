@@ -1,4 +1,6 @@
 import Link from "next/link";
+import AccountLink from "./AccountLink";
+import CartLink from "./CartLink";
 import LogoMark from "./LogoMark";
 
 const navLink =
@@ -38,12 +40,8 @@ export default function Header() {
           <button type="button" aria-label="Search" className="cursor-pointer">
             🔍
           </button>
-          <button type="button" aria-label="Shopping bag" className="relative cursor-pointer">
-            🛍️
-            <span className="absolute -right-2 -top-2 rounded-full bg-forest px-[5px] py-0.5 text-[9px] leading-none text-white">
-              4
-            </span>
-          </button>
+          <AccountLink />
+          <CartLink />
         </nav>
       </div>
     </header>

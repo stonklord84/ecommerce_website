@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { isOutOfStock, type ProductWithCollection } from "@/lib/products";
 import AnnouncementBar from "./AnnouncementBar";
-import BuyButton from "./BuyButton";
+import AddToCartButton from "./AddToCartButton";
+import CheckoutButton from "./CheckoutButton";
 import Footer from "./Footer";
 import Header from "./Header";
 import Price from "./Price";
@@ -54,7 +55,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             {!isOutOfStock(product) && (
               <>
-                <BuyButton slug={product.slug} />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <CheckoutButton items={[{ slug: product.slug, quantity: 1 }]} label="Buy Now" />
+                  <AddToCartButton slug={product.slug} />
+                </div>
                 <p className="mt-4 text-[12px] text-muted">
                   Free returns within 60 days of delivery.{" "}
                   <Link href="/returns" className="border-b border-line transition duration-300 ease-silk hover:text-gold">

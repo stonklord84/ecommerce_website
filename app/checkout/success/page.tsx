@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AnnouncementBar from "@/components/AnnouncementBar";
+import ClearCart from "@/components/ClearCart";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { site } from "@/lib/site";
@@ -10,10 +11,14 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-// Where Stripe sends the customer after a successful payment.
-export default function CheckoutSuccessPage() {
+// Where Stripe sends the customer after a successful payment. ?from=cart means
+// the cart was paid for, so it's emptied; after Buy Now the cart is left alone.
+export default async function CheckoutSuccessPage({ searchParams }: PageProps<"/checkout/success">) {
+  const { from } = await searchParams;
+
   return (
     <>
+      {from === "cart" && <ClearCart />}
       <AnnouncementBar />
       <Header />
       <main className="mx-auto max-w-[640px] px-6 py-[100px] text-center">

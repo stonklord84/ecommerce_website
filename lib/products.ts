@@ -26,10 +26,7 @@ export type Product = {
   image_urls: string[];
 };
 
-// Products with this status can't be bought; matched case-insensitively.
-export function isOutOfStock(product: Pick<Product, "status">): boolean {
-  return product.status?.trim().toLowerCase() === "out of stock";
-}
+export { isOutOfStock } from "./stock";
 
 export type CollectionWithProducts =Collection & { products: Product[] };
 export type ProductWithCollection = Product & { collection: Collection };
