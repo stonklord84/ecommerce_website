@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     "LUMIÈRE EAST | Where East Meets West — Mulberry Silk & Wool Blend Accessories",
   description:
     "Lumière East brings together Eastern-inspired heritage and contemporary elegance through 100% Grade 6A Mulberry silk and fine wool-blend scarves. Hand-rolled hems and thoughtful craftsmanship.",
+  verification: {
+    other: {
+      "facebook-domain-verification": "t09f9pebxza6iqn73lxcdih2rjjae0",
+    }
+  }
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
