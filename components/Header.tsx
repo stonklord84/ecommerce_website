@@ -2,6 +2,7 @@ import Link from "next/link";
 import AccountLink from "./AccountLink";
 import CartLink from "./CartLink";
 import LogoMark from "./LogoMark";
+import SearchButton from "./SearchButton";
 
 const navLink =
   "text-[11px] uppercase tracking-[2px] text-muted transition duration-300 ease-silk hover:text-gold";
@@ -37,9 +38,7 @@ export default function Header() {
           <Link href="/#journey" className={`hidden lg:inline ${navLink}`}>The Silk Journey</Link>
           <Link href="/#library" className={`hidden lg:inline ${navLink}`}>Silk Care</Link>
           <Link href="/#qa" className={`hidden lg:inline ${navLink}`}>Q&A</Link>
-          <button type="button" aria-label="Search" className="cursor-pointer">
-            🔍
-          </button>
+          <SearchButton />
           <AccountLink />
           <CartLink />
         </nav>

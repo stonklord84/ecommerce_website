@@ -17,7 +17,15 @@ const nextConfig: NextConfig = {
       ? [new URL(`${supabaseUrl}/storage/v1/object/public/product-images/**`)]
       : [],
   },
-
+  // Common Shopify-style policy URLs, so old or guessed links still land somewhere.
+  async redirects() {
+    return [
+      { source: "/policies/shipping-policy", destination: "/shipping", permanent: true },
+      { source: "/policies/privacy-policy", destination: "/privacy", permanent: true },
+      { source: "/policies/terms-of-service", destination: "/terms", permanent: true },
+      { source: "/policies/refund-policy", destination: "/returns", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

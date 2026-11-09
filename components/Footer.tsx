@@ -45,7 +45,7 @@ export default function Footer() {
           <div className="mb-4">Phone: {site.phoneDisplay}</div>
           <ul className="mt-4 space-y-3">
             <li><Link href="/#library" className={link}>Silk Wash & Care Instructions</Link></li>
-            <li><a href="#" className={link}>Complimentary Canada & US Delivery</a></li>
+            <li><Link href="/shipping" className={link}>Complimentary Canada & US Delivery</Link></li>
           </ul>
         </div>
 
@@ -57,9 +57,10 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto flex max-w-[1280px] flex-col flex-wrap items-center justify-center gap-5 border-t border-[#222] pt-6 text-center sm:flex-row sm:justify-between sm:text-left">
-        <div className="flex gap-5">
-          <a href="#" className={link}>Privacy Policy</a>
-          <a href="#" className={link}>Terms of Service</a>
+        <div className="flex flex-wrap justify-center gap-5">
+          <Link href="/privacy" className={link}>Privacy Policy</Link>
+          <Link href="/terms" className={link}>Terms of Service</Link>
+          <Link href="/shipping" className={link}>Shipping</Link>
           <Link href="/returns" className={link}>Returns & Refunds</Link>
         </div>
         <div>© 2026 LUMIÈRE EAST. All rights reserved. 100% Mulberry Silk.</div>
