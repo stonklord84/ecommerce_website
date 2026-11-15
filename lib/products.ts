@@ -81,6 +81,18 @@ export const getProduct = cache(async (slug: string): Promise<ProductWithCollect
   return { ...toProduct(row as ProductRow), collection: collection as Collection };
 });
 
+// Looks up products by the Content ID they have in the Facebook Shop catalog
+// (the facebook_id column, see supabase/facebook-ids.sql). Unknown IDs are simply left out.
+export async function getProductsByFacebookIds(facebookIds: string[]): Promise<(Product & { facebook_id: string })[]> {
+  if (facebookIds.length === 0) return [];
+  const { data, error } = await supabase.from("products").select("*").in("facebook_id", facebookIds);
+  if (error) throw new Error(`Failed to load products by Facebook ID: ${error.message}`);
+  return (data as (ProductRow & { facebook_id: string })[]).map((row) => ({
+    ...toProduct(row),
+    facebook_id: row.facebook_id,
+  }));
+}
+
 export async function getProductSlugs(): Promise<string[]> {
   const { data, error } = await supabase.from("products").select("slug");
   if (error) throw new Error(`Failed to load product slugs: ${error.message}`);

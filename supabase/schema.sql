@@ -31,7 +31,9 @@ create table public.products (
   image_path    text,
   -- Badge on the product card, e.g. "Out of Stock"; leave empty for no badge
   status        text,
-  sort_order    int not null default 0
+  sort_order    int not null default 0,
+  -- Content ID in the Facebook Shop catalog, used by /checkout (see facebook-ids.sql)
+  facebook_id   text unique
 );
 
 create index products_collection_id_idx on public.products (collection_id);
