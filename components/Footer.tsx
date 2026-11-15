@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import CollectionLink from "./CollectionLink";
 import LogoMark from "./LogoMark";
 import NewsletterForm from "./NewsletterForm";
 
@@ -27,10 +28,10 @@ export default function Footer() {
         <div>
           <h4 className={heading}>Collections</h4>
           <ul className="space-y-3">
-            <li><Link href="/#collections" className={link}>Heritage Paisley Collection</Link></li>
-            <li><Link href="/#collections" className={link}>Spring Flora Collection</Link></li>
-            <li><Link href="/#collections" className={link}>Winter Classics Collection</Link></li>
-            <li><Link href="/#collections" className={link}>Bespoke Gift Sets</Link></li>
+            <li><CollectionLink slug="heritage-silk" className={link}>Heritage Paisley Collection</CollectionLink></li>
+            <li><CollectionLink slug="spring-flora" className={link}>Spring Flora Collection</CollectionLink></li>
+            <li><CollectionLink slug="winter-classics" className={link}>Winter Classics Collection</CollectionLink></li>
+            <li><CollectionLink slug="winter-heritage-paisley" className={link}>Winter Paisley Collection</CollectionLink></li>
           </ul>
         </div>
 

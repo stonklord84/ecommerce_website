@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { readTab, saveTab, subscribeTab } from "@/lib/collection-tab";
 import type { CollectionWithProducts } from "@/lib/products";
 import BespokePanel from "./BespokePanel";
 import Price from "./Price";
@@ -11,40 +12,12 @@ type CollectionsProps = {
   collections: CollectionWithProducts[];
 };
 
-// The open tab is remembered in sessionStorage (by collection slug, so reordering
-// collections doesn't change it), so coming back from a product page reopens it.
-// It's forgotten when the browser tab is closed.
-const STORAGE_KEY = "collection";
+// The open tab lives in lib/collection-tab.ts (remembered for the browser tab's session).
 const BESPOKE = "bespoke";
-const listeners = new Set<() => void>();
-
-function readTab(): string | null {
-  try {
-    return sessionStorage.getItem(STORAGE_KEY);
-  } catch {
-    return null;
-  }
-}
-
-function saveTab(slug: string) {
-  try {
-    sessionStorage.setItem(STORAGE_KEY, slug);
-  } catch {
-    // Storage blocked (e.g. private mode): the tab just won't be remembered.
-  }
-  listeners.forEach((listener) => listener());
-}
-
-function subscribe(listener: () => void) {
-  listeners.add(listener);
-  return () => {
-    listeners.delete(listener);
-  };
-}
 
 export default function Collections({ collections }: CollectionsProps) {
   // The page is pre-rendered with the first tab; the saved one applies right after load.
-  const saved = useSyncExternalStore(subscribe, readTab, () => null);
+  const saved = useSyncExternalStore(subscribeTab, readTab, () => null);
   const slugs = [...collections.map((c) => c.slug), BESPOKE];
   const active = Math.max(0, slugs.indexOf(saved ?? ""));
   const tabs = [...collections.map((c) => c.name), "Atelier Bespoke"];
