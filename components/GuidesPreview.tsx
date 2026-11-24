@@ -5,12 +5,14 @@ import SectionHeader from "./SectionHeader";
 
 // Homepage block: the latest few guides, so the homepage length never grows.
 export default function GuidesPreview({ guides }: { guides: GuideSummary[] }) {
-  if (guides.length === 0) return null;
-
   return (
     <section id="guides" className="mx-auto max-w-[1280px] px-6 py-[70px]">
       <SectionHeader eyebrow="Style & Care" title="Style and Care Guide" />
-      <GuideList guides={guides} />
+      {guides.length > 0 ? (
+        <GuideList guides={guides} />
+      ) : (
+        <p className="text-center text-sm text-muted">New guides are on their way. Please check back soon.</p>
+      )}
       <div className="mt-6 text-center">
         <Link
           href="/style-and-care-guide"
