@@ -10,3 +10,5 @@ Allow: /
 
 User-agent: Google-Extended
 Allow: /
+
+Sitemap: https://lumiereeast.com/sitemap.xml

@@ -46,6 +46,7 @@ export default function Footer() {
           <div className="mb-4">Phone: {site.phoneDisplay}</div>
           <ul className="mt-4 space-y-3">
             <li><Link href="/#library" className={link}>Silk Wash & Care Instructions</Link></li>
+            <li><Link href="/style-and-care-guide" className={link}>Style & Care Guide</Link></li>
             <li><Link href="/shipping" className={link}>Complimentary Canada & US Delivery</Link></li>
           </ul>
         </div>
